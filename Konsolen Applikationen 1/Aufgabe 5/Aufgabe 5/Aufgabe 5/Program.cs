@@ -9,7 +9,7 @@ namespace Aufgabe_5
             Console.WriteLine("Wie viele Kilometer möchtest du rennen?");
             int eingabe = Convert.ToInt32(Console.ReadLine());
             int Strecke = 42;
-            int rundenanzahl = 1;
+            
             double rundenlänge = 0.4;
             double runden = eingabe / rundenlänge;
 
@@ -31,19 +31,25 @@ namespace Aufgabe_5
 
                 else
                 {
+                    int rundenanzahl = 1;
                     Console.WriteLine("Du läufst jetzt Runde " + rundenanzahl);
 
-                    if (runden > rundenanzahl)
+
+                    if (rundenanzahl < runden)
                     {
-                        Console.WriteLine("Du hast es geschafft");
-                        Environment.Exit(0);
+                        while (rundenanzahl < runden)
+                        {
+                            rundenanzahl++;
+                            Console.WriteLine("Du läufst jetzt Runde " + rundenanzahl);
+                        }
+                        Console.WriteLine("Geschafft! Du hast " + eingabe + " Kilometer geschafft!");
+
+
+
+
+
                     }
 
-                    else
-                    {
-                        while (runden < rundenanzahl)
-                            Console.WriteLine(runden++);
-                    }
 
 
 
