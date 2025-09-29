@@ -7,20 +7,10 @@ namespace Aufgabe3
         static void Main(string[] args)
         {
             int i = 1;
-
-            if (i > 10)
+            while (i <= 10)
             {
-                Environment.Exit(0);
+                Console.WriteLine(i++);
             }
-            else
-            {
-                while (i <= 10)
-                {
-                    Console.WriteLine(i++);
-                }
-            }
-
-
         }
     }
 }
