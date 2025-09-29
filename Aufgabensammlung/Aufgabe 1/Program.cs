@@ -10,10 +10,6 @@ namespace Konsolen_Applikationen_1
     {
         static void Main(string[] args)
         {
-         
-            
-      
-
             Console.WriteLine("Dieses Programm berechnet die Summe von zwei Zahlen.");
             Console.WriteLine("----------------------------------------------------");
 
@@ -21,11 +17,9 @@ namespace Konsolen_Applikationen_1
             string eingabe1 = Console.ReadLine();
             int erstezahl = Convert.ToInt32(eingabe1);
 
-
             Console.WriteLine("Deine zweite Zahl");
             string eingabe2 = Console.ReadLine();
             int zweitezahl = Convert.ToInt32(eingabe2);
-
 
             int ergebnis = erstezahl + zweitezahl;
 
@@ -33,14 +27,6 @@ namespace Konsolen_Applikationen_1
 
             Console.WriteLine("Drücken sie eine beliebige Taste um zu beeden");
             Console.ReadKey();
-
-
-
-
-
-
-
-
         }
     }
 }
