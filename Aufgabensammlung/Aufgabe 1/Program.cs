@@ -23,7 +23,7 @@ namespace Konsolen_Applikationen_1
 
             int ergebnis = erstezahl + zweitezahl;
 
-           Console.WriteLine("Ihre Summe ist" + ergebnis);
+           Console.WriteLine("Ihre Summe ist " + ergebnis);
 
             Console.WriteLine("Drücken sie eine beliebige Taste um zu beeden");
             Console.ReadKey();

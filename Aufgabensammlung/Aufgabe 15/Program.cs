@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace Aufgabe_15
 {
@@ -8,36 +7,58 @@ namespace Aufgabe_15
         static void Main(string[] args)
         {
             Console.Write("Breite des Stammes? ");
-            int breite = Convert.ToInt32(Console.ReadLine());
+            int stammBreite = Convert.ToInt32(Console.ReadLine());
+
             Console.Write("Höhe des Stammes? ");
-            int hoehestamm = Convert.ToInt32(Console.ReadLine());
+            int stammHoehe = Convert.ToInt32(Console.ReadLine());
+
             Console.Write("Höhe der Krone? ");
-            int hoehekrone = Convert.ToInt32(Console.ReadLine());
+            int kronenHoehe = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Dein Baum wird generiert...");
             System.Threading.Thread.Sleep(1000);
-            
 
+            ZeichneBaum(stammBreite, stammHoehe, kronenHoehe);
 
-            for (int i = 0; i < hoehekrone; i++)
+            Console.ReadKey();
+        }
+
+        static void ZeichneBaum(int stammBreite, int stammHoehe, int kronenHoehe)
+        {
+            ZeichneKrone(kronenHoehe);
+            ZeichneStamm(stammBreite, stammHoehe, kronenHoehe);
+        }
+
+        static void ZeichneKrone(int kronenHoehe)
+        {
+            for (int zeile = 0; zeile < kronenHoehe; zeile++)
             {
-                for (int j = 0; j < hoehekrone - i - 1; j++)
+                for (int leer = 0; leer < kronenHoehe - zeile - 1; leer++)
+                {
                     Console.Write(" ");
-                for (int k = 0; k < 2 * i + 1; k++)
+                }
+                for (int stern = 0; stern < (2 * zeile) + 1; stern++)
+                {
                     Console.Write("*");
-                Console.WriteLine();
-            }
-
-
-            for (int i = 0; i < hoehestamm; i++)
-            {
-                for (int j = 0; j < hoehekrone - breite / 2 - 1; j++)
-                    Console.Write(" ");
-                for (int b = 0; b < breite; b++)
-                    Console.Write("*");
+                }
                 Console.WriteLine();
             }
         }
 
+        static void ZeichneStamm(int stammBreite, int stammHoehe, int kronenHoehe)
+        {
+            for (int zeile = 0; zeile < stammHoehe; zeile++)
+            {
+                for (int leer = 0; leer < (kronenHoehe - 1) - (stammBreite / 2); leer++)
+                {
+                    Console.Write(" ");
+                }
+                for (int stamm = 0; stamm < stammBreite; stamm++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+        }
     }
 }

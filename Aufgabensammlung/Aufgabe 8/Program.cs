@@ -6,7 +6,12 @@ namespace Aufgabe_08
     {
         static void Main(string[] args)
         {
-            string[] forbiddenWords = { "viagra", "sex", "porno", "fick", "schlampe", "arsch" };
+            string[] forbiddenWords = {
+                        "viagra", "sex", "porno", "fick", "schlampe", "arsch",
+                        "hure", "nutte", "fotze", "wichser", "dummkopf", "idiot",
+                        "hurensohn", "bastard", "arschloch", "pisser", "spast",
+                        "fuck", "shit", "bitch", "slut", "cock", "dick", "asshole"
+                          };
 
             Console.WriteLine("Dein Kommentar:");
             string kommentar = Console.ReadLine();
