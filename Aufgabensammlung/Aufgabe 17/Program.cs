@@ -1,41 +1,47 @@
 ﻿using System;
+using System.Globalization;
 
-namespace Aufgabe_17
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        Console.WriteLine("Bitte geben Sie Ihr Geburtsdatum im Format TT.MM.JJJJ ein:");
+        Console.WriteLine(" ");
+        string input = Console.ReadLine();
+
+        if (DateTime.TryParseExact(input, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime birthDate))
         {
-            Console.WriteLine("Bitte gib ein Geburtsdatum ein: ");
-            string eingabe = Console.ReadLine();
+            DateTime today = DateTime.Today;
 
-           
-            DateTime geburtsdatum;
-            if (DateTime.TryParse(eingabe, out geburtsdatum))
+            if (birthDate > today)
             {
-                DateTime heute = DateTime.Now;
-
-               
-                int alterJahre = heute.Year - geburtsdatum.Year;
-                if (heute < geburtsdatum.AddYears(alterJahre))
-                {
-                    alterJahre--; 
-                }
-
-                
-                int alterMonate = alterJahre * 12;
-                int alterWochen = alterJahre * 52;  
-                int alterTage = (heute - geburtsdatum).Days;
-
-                Console.WriteLine("Alter in Jahren: " + alterJahre);
-                Console.WriteLine("Alter in Monaten: " + alterMonate);
-                Console.WriteLine("Alter in Wochen (ca.): " + alterWochen);
-                Console.WriteLine("Alter in Tagen: " + alterTage);
+                Console.WriteLine("Ungültiges Datum: Das Geburtsdatum darf nicht in der Zukunft liegen.");
+                return;
             }
-            else
+
+            int years = today.Year - birthDate.Year;
+            if (today.Month < birthDate.Month || (today.Month == birthDate.Month && today.Day < birthDate.Day))
             {
-                Console.WriteLine("Ungültiges Datum! Bitte im Format TT.MM.JJJJ eingeben.");
+                years--;
             }
+
+            int months = (today.Year - birthDate.Year) * 12 + (today.Month - birthDate.Month);
+            if (today.Day < birthDate.Day)
+            {
+                months--;
+            }
+
+            int days = (today - birthDate).Days;
+            int weeks = days / 7;
+
+            Console.WriteLine("Alter in Jahren: " + years);
+            Console.WriteLine("Alter in Monaten: " + months);
+            Console.WriteLine("Alter in Wochen: " + weeks);
+            Console.WriteLine("Alter in Tagen: " + days);
+        }
+        else
+        {
+            Console.WriteLine("Ungültiges Datum: Bitte geben Sie das Datum im Format TT.MM.JJJJ ein.");
         }
     }
 }

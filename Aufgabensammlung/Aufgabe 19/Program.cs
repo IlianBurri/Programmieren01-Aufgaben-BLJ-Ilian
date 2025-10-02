@@ -6,90 +6,52 @@ namespace Aufgabe_19
     {
         static void Main(string[] args)
         {
-            Boolean weiterspielen = true;
-
             while (true)
             {
-
                 Console.WriteLine("Make your calculation (2 numbers only) (or press Q to quit): ");
                 string eingabe = Console.ReadLine();
-                if (eingabe.ToLower() == "q")
-                    weiterspielen = false;
-                if (!weiterspielen)
+
+                if (eingabe.Trim().ToLower() == "q")
                     break;
 
-                string[] plus = eingabe.Split('+');
-                if (plus.Length == 2)
-                {
-                    if (int.TryParse(plus[0].Trim(), out int zahl1) && int.TryParse(plus[1].Trim(), out int zahl2))
-                    {
-                        int ergebnis = zahl1 + zahl2;
-                        Console.WriteLine($"Result: {ergebnis}");
-                        Console.WriteLine();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error: Invalid numbers.");
-                        weiterspielen = true;
-                    }
-                }
+                string[] teile = eingabe.Split('+', '-', '*', '/');
 
-                string[] minus = eingabe.Split('-');
-                if (minus.Length == 2)
+                if (teile.Length == 2 &&
+                    double.TryParse(teile[0].Trim(), out double zahl1) &&
+                    double.TryParse(teile[1].Trim(), out double zahl2))
                 {
-                    if (int.TryParse(minus[0].Trim(), out int zahl1) && int.TryParse(minus[1].Trim(), out int zahl2))
-                    {
-                        int ergebnis = zahl1 - zahl2;
-                        Console.WriteLine($"Result: {ergebnis}");
-                        Console.WriteLine();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error: Invalid numbers.");
-                        weiterspielen = true;
-                    }
-                }
+                    double ergebnis = 0;
+                    bool gueltig = true;
 
-                string[] mal = eingabe.Split('*');
-                if (mal.Length == 2)
-                {
-                    if (int.TryParse(mal[0].Trim(), out int zahl1) && int.TryParse(mal[1].Trim(), out int zahl2))
-                    {
-                        int ergebnis = zahl1 * zahl2;
-                        Console.WriteLine($"Result: {ergebnis}");
-                        Console.WriteLine();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error: Invalid numbers.");
-                        weiterspielen = true;
-                    }
-                }
-
-                string[] geteilt = eingabe.Split('/');
-                if (geteilt.Length == 2)
-                {
-                    if (int.TryParse(geteilt[0].Trim(), out int zahl1) && int.TryParse(geteilt[1].Trim(), out int zahl2))
+                    if (eingabe.Contains("+"))
+                        ergebnis = zahl1 + zahl2;
+                    else if (eingabe.Contains("-"))
+                        ergebnis = zahl1 - zahl2;
+                    else if (eingabe.Contains("*"))
+                        ergebnis = zahl1 * zahl2;
+                    else if (eingabe.Contains("/"))
                     {
                         if (zahl2 != 0)
-                        {
-                            int ergebnis = zahl1 / zahl2;
-                            Console.WriteLine($"Result: {ergebnis}");
-                            Console.WriteLine();
-                        }
+                            ergebnis = zahl1 / zahl2;
                         else
                         {
-                            Console.WriteLine("Error: Division by zero is not allowed.");
+                            Console.WriteLine("Error: Division by zero.");
+                            gueltig = false;
                         }
                     }
                     else
-                    {
-                        Console.WriteLine("Error: Invalid numbers.");
-                        weiterspielen = true;
-                    }
-                }
-            }
+                        gueltig = false;
 
+                    if (gueltig)
+                        Console.WriteLine($"Result: {ergebnis}");
+                }
+                else
+                {
+                    Console.WriteLine("Error: Invalid input.");
+                }
+
+                Console.WriteLine();
+            }
         }
     }
 }
